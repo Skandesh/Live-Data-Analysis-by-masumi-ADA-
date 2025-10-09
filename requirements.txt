@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+requests
+pydantic
+crewai
+openai
+python-multipart
+jinja2

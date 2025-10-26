@@ -1,0 +1,127 @@
+{
+  "nist_controls": [
+    {
+      "id": "AC-1",
+      "name": "Access Control Policy and Procedures",
+      "category": "Access Control",
+      "description": "Develop, document, and disseminate access control policy and procedures",
+      "keywords": ["access control", "authorization", "permissions", "user access"]
+    },
+    {
+      "id": "AC-2",
+      "name": "Account Management",
+      "category": "Access Control",
+      "description": "Manage information system accounts including establishing, activating, modifying, reviewing, disabling, and removing accounts",
+      "keywords": ["account management", "user accounts", "provisioning", "deprovisioning"]
+    },
+    {
+      "id": "AU-1",
+      "name": "Audit and Accountability Policy",
+      "category": "Audit and Accountability",
+      "description": "Develop, document, and disseminate audit and accountability policy",
+      "keywords": ["audit", "logging", "monitoring", "accountability", "audit logs"]
+    },
+    {
+      "id": "IA-1",
+      "name": "Identification and Authentication Policy",
+      "category": "Identification and Authentication",
+      "description": "Develop and implement identification and authentication policy",
+      "keywords": ["authentication", "identity", "MFA", "multi-factor", "passwords"]
+    },
+    {
+      "id": "IA-2",
+      "name": "Multi-Factor Authentication",
+      "category": "Identification and Authentication",
+      "description": "Implement multi-factor authentication for network access",
+      "keywords": ["MFA", "2FA", "multi-factor", "two-factor", "authentication"]
+    },
+    {
+      "id": "IR-1",
+      "name": "Incident Response Policy",
+      "category": "Incident Response",
+      "description": "Establish incident response policy and procedures",
+      "keywords": ["incident response", "security incident", "breach", "incident management"]
+    },
+    {
+      "id": "SC-1",
+      "name": "System and Communications Protection Policy",
+      "category": "System and Communications Protection",
+      "description": "Develop and implement system and communications protection policy",
+      "keywords": ["encryption", "data protection", "communications security", "cryptography"]
+    },
+    {
+      "id": "CP-1",
+      "name": "Contingency Planning Policy",
+      "category": "Contingency Planning",
+      "description": "Develop contingency planning policy and procedures",
+      "keywords": ["business continuity", "disaster recovery", "backup", "recovery"]
+    }
+  ],
+  "iso_controls": [
+    {
+      "id": "A.5.1.1",
+      "name": "Policies for information security",
+      "category": "Information Security Policies",
+      "description": "A set of policies for information security shall be defined, approved by management",
+      "keywords": ["security policy", "information security", "policy management"]
+    },
+    {
+      "id": "A.9.1.1",
+      "name": "Access control policy",
+      "category": "Access Control",
+      "description": "An access control policy shall be established, documented and reviewed",
+      "keywords": ["access control", "access policy", "authorization"]
+    },
+    {
+      "id": "A.9.2.1",
+      "name": "User registration and de-registration",
+      "category": "User Access Management",
+      "description": "A formal user registration and de-registration process shall be implemented",
+      "keywords": ["user registration", "account management", "provisioning"]
+    },
+    {
+      "id": "A.12.1.1",
+      "name": "Documented operating procedures",
+      "category": "Operations Security",
+      "description": "Operating procedures shall be documented and made available",
+      "keywords": ["procedures", "documentation", "operations"]
+    },
+    {
+      "id": "A.16.1.1",
+      "name": "Responsibilities and procedures",
+      "category": "Incident Management",
+      "description": "Management responsibilities and procedures for information security incidents",
+      "keywords": ["incident management", "incident response", "responsibilities"]
+    },
+    {
+      "id": "A.18.1.1",
+      "name": "Identification of applicable legislation",
+      "category": "Compliance",
+      "description": "All relevant legislative statutory, regulatory, contractual requirements",
+      "keywords": ["compliance", "legal requirements", "regulations", "GDPR", "DPDP"]
+    }
+  ],
+  "dpdp_requirements": [
+    {
+      "id": "DPDP-1",
+      "name": "Data Principal Rights",
+      "category": "Data Protection",
+      "description": "Ensure rights of data principals including access, correction, and erasure",
+      "keywords": ["data rights", "data principal", "privacy rights", "data subject"]
+    },
+    {
+      "id": "DPDP-2",
+      "name": "Data Retention Policy",
+      "category": "Data Protection",
+      "description": "Implement data retention and deletion policies",
+      "keywords": ["data retention", "data deletion", "retention policy", "data lifecycle"]
+    },
+    {
+      "id": "DPDP-3",
+      "name": "Consent Management",
+      "category": "Data Protection",
+      "description": "Obtain and manage consent for data processing",
+      "keywords": ["consent", "data processing", "consent management", "privacy"]
+    }
+  ]
+}

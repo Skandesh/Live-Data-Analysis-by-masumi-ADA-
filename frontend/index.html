@@ -2,17 +2,252 @@
 <html lang='en'>
 <head>
     <meta charset='UTF-8'>
-    <title>Live Data Analysis by Masumi (ADA)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masumi ADA - AI Cybersecurity Policy Analyzer</title>
     <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-    <h1>Live Data Analysis by Masumi (ADA)</h1>
-    <p>AI-powered cybersecurity policy analyzer with ADA micropayments</p>
-    <form id='policyForm'>
-        <input type='file' id='policyFile' required />
-        <button type='submit'>Analyze</button>
-    </form>
-    <div id='result'></div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <span class="logo">Masumi</span>
+                    <span class="logo-accent">ADA</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button id="apiKeyBtn" class="btn-ghost">
+                    <span>⚙️ API Settings</span>
+                </button>
+                <span id="connectionStatus" class="status-indicator">● Ready</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="title">Masumi <span class="accent">ADA</span></h1>
+            <p class="subtitle">AI-Powered Cybersecurity Policy Analyzer with ADA Micropayments</p>
+        </header>
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-card">
+                <div class="upload-icon">📁</div>
+                <h2>Upload Policy Document</h2>
+                <p>Drag and drop your policy file or click to browse</p>
+                <form id='policyForm'>
+                    <label for="policyFile" class="file-input-label">
+                        <input type='file' id='policyFile' accept=".txt,.pdf,.doc,.docx" required />
+                        <span class="file-input-display">Choose file or drag here</span>
+                    </label>
+                    <button type='submit' class="btn btn-primary">
+                        <span class="btn-text">Analyze Policy</span>
+                        <span class="btn-loader" style="display:none;">Analyzing...</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Process Steps -->
+        <section id="processSteps" class="process-steps" style="display:none;">
+            <h3>Analysis Progress</h3>
+            
+            <!-- Progress Bar -->
+            <div class="overall-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+            
+            <!-- Current Status -->
+            <div class="status-message" id="statusMessage">
+                Initializing analysis...
+            </div>
+            
+            <div class="steps-timeline">
+                <div class="step" id="step1">
+                    <div class="step-icon">📤</div>
+                    <div class="step-content">
+                        <h4>File Upload</h4>
+                        <p class="step-status">Processing document</p>
+                        <small class="step-detail">Validating file format</small>
+                    </div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-content">
+                        <h4>Policy Reader Agent</h4>
+                        <p class="step-status">Extracting sections</p>
+                        <small class="step-detail">Identifying security controls</small>
+                    </div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-icon">✅</div>
+                    <div class="step-content">
+                        <h4>Compliance Auditor Agent</h4>
+                        <p class="step-status">Evaluating standards</p>
+                        <small class="step-detail">NIST 800-53 • ISO 27001 • DPDP Act</small>
+                    </div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-icon">🤖</div>
+                    <div class="step-content">
+                        <h4>AI Consultant Agent</h4>
+                        <p class="step-status">Generating insights</p>
+                        <small class="step-detail">Creating recommendations</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Processing Details -->
+            <div class="processing-details" id="processingDetails">
+                <div class="detail-item">
+                    <span class="detail-label">File Name:</span>
+                    <span class="detail-value" id="fileName">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">File Size:</span>
+                    <span class="detail-value" id="fileSize">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Processing Time:</span>
+                    <span class="detail-value" id="processingTime">0s</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="results-section" style="display:none;">
+            <!-- New Analysis Button at Top -->
+            <div class="results-header">
+                <h2>Analysis Results</h2>
+                <button class="btn btn-secondary" onclick="analyzeAnother()">
+                    ← New Analysis
+                </button>
+            </div>
+            
+            <!-- Score Overview -->
+            <div class="score-overview">
+                <div class="score-card">
+                    <div class="score-circle">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle class="progress-ring__circle" stroke="#e0e0e0" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                            <circle class="progress-ring__progress" stroke="#2563eb" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                        </svg>
+                        <div class="score-text">
+                            <span class="score-value">0</span>
+                            <span class="score-label">%</span>
+                        </div>
+                    </div>
+                    <h3>Compliance Score</h3>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="summary">Summary</button>
+                <button class="tab-btn" data-tab="strengths">Strengths</button>
+                <button class="tab-btn" data-tab="gaps">Gaps</button>
+                <button class="tab-btn" data-tab="recommendations">Recommendations</button>
+                <button class="tab-btn" data-tab="raw">Raw Data</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="tab-content">
+                <div id="summary" class="tab-pane active">
+                    <div class="content-card">
+                        <h3>Analysis Summary</h3>
+                        <div id="summaryContent"></div>
+                    </div>
+                </div>
+                
+                <div id="strengths" class="tab-pane">
+                    <div class="content-card">
+                        <h3>✅ Implemented Controls</h3>
+                        <div id="strengthsContent"></div>
+                    </div>
+                </div>
+                
+                <div id="gaps" class="tab-pane">
+                    <div class="content-card">
+                        <h3>⚠️ Missing Controls</h3>
+                        <div id="gapsContent"></div>
+                    </div>
+                </div>
+                
+                <div id="recommendations" class="tab-pane">
+                    <div class="content-card">
+                        <h3>🤖 AI Recommendations</h3>
+                        <div id="recommendationsContent">
+                            <div class="premium-notice">
+                                <p>Unlock detailed AI recommendations with premium analysis</p>
+                                <button class="btn btn-success" onclick="unlockPremium()">
+                                    🔓 Unlock Full Report (5 ADA)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="raw" class="tab-pane">
+                    <div class="content-card">
+                        <h3>📊 Raw JSON Data</h3>
+                        <pre id="rawContent"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+                <button class="btn btn-secondary" onclick="downloadReport()">
+                    📥 Download Report
+                </button>
+                <button class="btn btn-primary" onclick="analyzeAnother()">
+                    📝 Analyze Another Policy
+                </button>
+            </div>
+        </section>
+
+        <!-- JSON Viewer Modal -->
+        <div id="jsonModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>JSON Report Viewer</h3>
+                <pre id="jsonViewer"></pre>
+            </div>
+        </div>
+
+        <!-- API Key Modal -->
+        <div id="apiKeyModal" class="modal" style="display:none;">
+            <div class="modal-content modal-small">
+                <span class="close" onclick="closeApiModal()">&times;</span>
+                <h3>API Configuration</h3>
+                
+                <div class="api-form">
+                    <div class="form-group">
+                        <label>Select LLM Provider:</label>
+                        <select id="llmProvider">
+                            <option value="openai">OpenAI (GPT-4)</option>
+                            <option value="gemini">Google Gemini</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="apiKeyGroup">
+                        <label>API Key (Optional - leave blank to use default):</label>
+                        <input type="password" id="apiKeyInput" placeholder="Enter your API key">
+                        <small>Your key is stored locally and sent securely with each request</small>
+                    </div>
+                    
+                    <button onclick="saveApiSettings()" class="btn btn-primary">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src='script.js'></script>
 </body>
 </html>
